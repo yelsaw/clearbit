@@ -108,7 +108,7 @@ WebService::ClearBit - A FREE company information service provided by ClearBit
 
 # AUTHOR
 
-Ben Wasley (benw@benwasley.dev)
+ClearBit (clearbit@yelsaw.com)
 
 # SEE ALSO
 

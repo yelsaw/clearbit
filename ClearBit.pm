@@ -223,7 +223,7 @@ WebService::ClearBit - A FREE company information service provided by ClearBit
 
 =head1 AUTHOR
 
-Ben Wasley (benw@benwasley.dev)
+ClearBit <clearbit@yelsaw.com>
 
 =cut
 
