@@ -4,7 +4,6 @@ use Moo;
 use JSON::XS qw(decode_json);
 use URI::Fast qw(uri_encode);
 use URI::Fetch;
-use PerlX::Maybe qw(maybe);
 use Types::Standard qw(Str HashRef Bool);
 # Implement memcache for production
 use Cache::File;
