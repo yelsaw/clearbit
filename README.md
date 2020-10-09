@@ -1,3 +1,7 @@
+# INFO
+
+This is WiP module that uses ClearBit's public API to query for comapny data. If the proper modules are installed it currently has the executable added to the main file so it can simply be run by downloading it and running `perl ClearBit.pm`
+
 # NAME
 
 WebService::ClearBit - A FREE company information service provided by ClearBit
