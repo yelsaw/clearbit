@@ -1,8 +1,7 @@
 # ClearBit Docker API
 
-### Build image and launch container
+### Build image and start container
 To build the image and start the container run `./start.sh`
-
 Once the image is built the container will start.
 
 ### Query the running container
