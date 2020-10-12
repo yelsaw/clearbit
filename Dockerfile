@@ -20,7 +20,7 @@ RUN set -ex \
   && rm -rf /root/.cpanm
 
 COPY app /app
-RUN chmod +x /app/bin/run.pl
+RUN chmod +x /app/bin/query.pl
 
 ENV PERL5LIB=/local/lib/perl5
 
