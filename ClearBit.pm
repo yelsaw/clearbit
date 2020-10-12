@@ -86,10 +86,11 @@ sub query {
       $cached = 0;
     }
     if($payload) {
-      $payload = decode_json($payload);
+      my $data = decode_json($payload);
       $self->results({
-        rows => scalar @{$payload},
-        data => $payload,
+        rows => scalar @{$data},
+        data => $data,
+        json => $payload,
         cached => $cached,
       });
     }
@@ -105,16 +106,21 @@ sub query {
 1;
 
 # Test
-use DDP;
 my $cb = __PACKAGE__->new->query($ARGV[0]);
 # Force cache clear
 # $cb->cache->clear();
+
 print qq/
-  Data: @{[ np $cb->results->{data} ]}
-  Path: @{[ $cb->search_path ]}
-  Cached: @{[ $cb->results->{cached} ]}
-  Rows: @{[ $cb->results->{rows} ]}
+JSON: @{[ $cb->results->{json} ]}
+Path: @{[ $cb->search_path ]}
+Cached: @{[ $cb->results->{cached} ]}
+Rows: @{[ $cb->results->{rows} ]}
+_________________________
 /;
+  for my $r (@{$cb->results->{data}}) {
+    print "$_: $r->{$_}\n" for keys %{$r};
+    print "_________________________\n";
+  }
 
 =head1 NAME
 
@@ -122,22 +128,26 @@ WebService::ClearBit - A FREE company information service provided by ClearBit
 
 =head1 SYNOPSIS
 
-  use DDP;
   my $cb = __PACKAGE__->new->query($ARGV[0]);
   # Force cache clear
   # $cb->cache->clear();
-  # Do something with results.
-  print qq/
-    Data: @{[ np $cb->results->{data} ]}
-    Path: @{[ $cb->search_path ]}
-    Cached: @{[ $cb->results->{cached} ]}
-    Rows: @{[ $cb->results->{rows} ]}
-  /;
 
-  Results should look similar to the following when decode_json is used
-  or the query proxies through a JSON view that consumes a HashRef
+print qq/
+JSON: @{[ $cb->results->{json} ]}
+Path: @{[ $cb->search_path ]}
+Cached: @{[ $cb->results->{cached} ]}
+Rows: @{[ $cb->results->{rows} ]}
+_________________________
+/;
+  for my $r (@{$cb->results->{data}}) {
+    print "$_: $r->{$_}\n" for keys %{$r};
+    print "_________________________\n";
+  }
+
+  Results should look similar to the following when I<google> is the search query
   rows: 5,
   cached: 1|0,
+  json: [{"name":"Google","domain":"google.com","logo":"https://logo.clearbit.com/google.com"},{"name":"Google Design","domain":"design.google","logo":"https://logo.clearbit.com/design.google"},{"name":"Google Local Guides","domain":"localguidesconnect.com","logo":"https://logo.clearbit.com/localguidesconnect.com"},{"name":"GoogleWatchBlog","domain":"googlewatchblog.de","logo":"https://logo.clearbit.com/googlewatchblog.de"},{"name":"GChromecast Hub","domain":"googlechromecast.com","logo":"https://logo.clearbit.com/googlechromecast.com"}],
   data:{
     [
       {
@@ -204,7 +214,10 @@ WebService::ClearBit - A FREE company information service provided by ClearBit
   Example L</results>
   {
     rows => 0 or Int,
-    data => [] or [{ name => '', domain => '', logo => '' }]
+    data => [] or [{ name => '', domain => '', logo => '' }],
+    json => {},
+    cached => 1|0
+  }
 
 =head2 cache
 
