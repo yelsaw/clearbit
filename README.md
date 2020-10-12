@@ -3,25 +3,18 @@
 ### Build image and launch container
 To build the image and start the container run `./start.sh`
 
-Once the image is built the container will start and you
-can query the API from the command line to test.
-
-From container's shell, run `./bin/query.pl google` to test the 
-script. The first run will return `Cached: 0` subsequent
-runs for the same strings will return `Cached: 1`.
-
-Exiting the container will stop the container. The next time
-`./start.sh` is executed the container will start as a daemon
-and the `./query.sh` script can be used. Any previous caches
-from the initial launch will be cleared but they'll cache again
-every time a matching string is used more than once.
-
-The default cache is 30 minutes. 
+Once the image is built the container will start.
 
 ### Query the running container
-Once the container is launched use `./query.sh google`
+After the container is started, test with the provided script 
+`./query.sh google`
+
+The first run will return `Cached: 0` subsequent runs for the 
+same strings  will return `Cached: 1`.
+The default cache is 30 minutes. 
 
 Example output for the search string `google`
+
 
 ```
 JSON: [{"name":"Google","domain":"google.com","logo":"https://logo.clearbit.com/google.com"},{"name":"Google Design","domain":"design.google","logo":"https://logo.clearbit.com/design.google"},{"name":"Google Local Guides","domain":"localguidesconnect.com","logo":"https://logo.clearbit.com/localguidesconnect.com"},{"name":"GoogleWatchBlog","domain":"googlewatchblog.de","logo":"https://logo.clearbit.com/googlewatchblog.de"},{"name":"GChromecast Hub","domain":"googlechromecast.com","logo":"https://logo.clearbit.com/googlechromecast.com"}]

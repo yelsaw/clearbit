@@ -24,6 +24,6 @@ else
   sleep 2
   docker build -t clearbit . &&
   echo Starting clearbit container
-  docker run -it $(docker images --format='{{.ID}}' | head -1)
+  docker run -it -d $(docker images --format='{{.ID}}' | head -1)
   fi;
 fi;
