@@ -1,0 +1,10 @@
+wget
+perl
+perl-dev
+perl-app-cpanminus
+perl-db_file
+make
+zlib-dev
+openssl
+openssl-dev
+g++
