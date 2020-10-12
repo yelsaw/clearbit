@@ -105,23 +105,6 @@ sub query {
 
 1;
 
-# Test
-my $cb = __PACKAGE__->new->query($ARGV[0]);
-# Force cache clear
-# $cb->cache->clear();
-
-print qq/
-JSON: @{[ $cb->results->{json} ]}
-Path: @{[ $cb->search_path ]}
-Cached: @{[ $cb->results->{cached} ]}
-Rows: @{[ $cb->results->{rows} ]}
-_________________________
-/;
-  for my $r (@{$cb->results->{data}}) {
-    print "$_: $r->{$_}\n" for keys %{$r};
-    print "_________________________\n";
-  }
-
 =head1 NAME
 
 WebService::ClearBit - A FREE company information service provided by ClearBit
