@@ -1,0 +1,1 @@
+docker container ls -a  -q --filter "ancestor=clearbit" --filter "status=$1" 
