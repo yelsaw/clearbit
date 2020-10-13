@@ -1,1 +1,6 @@
-docker exec -it $(docker container ls -a  -q --filter "ancestor=clearbit" --filter "status=running") bin/query.pl $1
+cb=$(./container-id running)
+if [ $cb ]; then
+  docker exec -it $cb bin/query.pl $1
+else
+  echo "container doesn't exist, run ./start.sh to start or build and start"
+fi
