@@ -16,10 +16,9 @@ RUN set -ex \
   && rm -rf /local/cache \
   && rm -rf /root/.cpanm
 
-#COPY app /app
-#RUN chmod +x /app/bin/query.pl
+COPY app /app
+RUN chmod +x /app/bin/query.pl
 
 ENV PERL5LIB=/local/lib/perl5
 
-VOLUME /app
 WORKDIR /app
