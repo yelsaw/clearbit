@@ -1,4 +1,4 @@
-cb=$(./container-id running)
+cb=$(docker ps -qf name=clearbit)
 if [ $cb ]; then
   docker exec -it $cb bin/query.pl $1
 else

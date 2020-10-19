@@ -1,7 +1,7 @@
 #!/bin/bash
 
 set -e
-cb=$(./container-id running)
+cb=$(docker ps -qf name=clearbit)
 im=$(docker images -q clearbit 2> /dev/null)
 
 if [ $cb ]; then
@@ -17,13 +17,13 @@ if [ $cb ]; then
 else
   if [ $im ]; then
     echo "starting clearbit container"
-    docker run -it -d clearbit
+    docker run -it -d --name=clearbit clearbit
     exit 0;
   else
   echo "Building clearbit image"
   sleep 2
   docker build -t clearbit . &&
   echo "Starting clearbit container"
-  docker run -it -d -v$PWD/app:/app:ro clearbit
+  docker run -it -d --name=clearbit clearbit
   fi;
 fi;
