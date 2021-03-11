@@ -1,12 +1,12 @@
 # ClearBit Docker API
 
 ### Build image and start container
-To build the image and start the container run `./start.sh`
+To build the image and start the container run `./start.sh image-name`
 Once the image is built the container will start.
 
 ### Query the running container
 After the container is started, test with the provided script 
-`./query.sh google`
+`./query.sh image-name google`
 
 The first run will return `Cached: 0` subsequent runs for the 
 same strings  will return `Cached: 1`.
