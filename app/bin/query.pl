@@ -8,8 +8,10 @@ use WebService::ClearBit;
 
 my $cb = WebService::ClearBit->new->query($ARGV[0]);
 # Force cache clear
-# $cb->cache->clear();
+# $cb->cache->clear()
 
+# Print verbose info
+if($ARGV[1] // "" eq "verbose") {
 print qq/
 JSON: @{[ $cb->results->{json} ]}
 Path: @{[ $cb->search_path ]}
@@ -21,4 +23,8 @@ _________________________
     print "$_: $r->{$_}\n" for keys %{$r};
     print "_________________________\n";
   }
+exit;
+}
 
+# Print JSON
+print $cb->results->{json};
